@@ -12,6 +12,7 @@ const authSice = createSlice({
     },
     logout: (state, action) => {
       state.profile = {};
+      localStorage.removeItem("_profile");
     },
   },
 });

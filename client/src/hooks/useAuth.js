@@ -4,18 +4,14 @@ import { selectCurrentUser } from "../feature/auth/authSlice";
 
 const useAuth = () => {
   const user = useSelector(selectCurrentUser);
-  const { name, role } = useMemo(() => {
-    return user;
-  }, [user]);
-
   let isAdmin;
   let status = "User";
 
-  if (name || role) {
-    isAdmin = role.includes("admin");
+  if (user?.name || user?.role) {
+    isAdmin = user?.role.includes("admin");
     if (isAdmin) status = "Admin";
     return {
-      name,
+      name: user?.name,
       isAdmin,
       status,
     };

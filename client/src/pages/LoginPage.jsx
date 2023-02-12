@@ -186,7 +186,7 @@ const LoginPage = () => {
               </button>
               <div className="">
                 {isLogin ? (
-                  <div className=" text-gray-500 text-center">
+                  <div className=" text-gray-500 text-center mt-4">
                     Don't have an account?
                     <span
                       className="text-secondary-white cursor-pointer"
@@ -199,7 +199,7 @@ const LoginPage = () => {
                     </span>
                   </div>
                 ) : (
-                  <div className=" text-gray-500 text-center">
+                  <div className=" text-gray-500 text-center mt-4">
                     I already have an account!
                     <span
                       className="text-secondary-white cursor-pointer"
@@ -211,9 +211,6 @@ const LoginPage = () => {
                   </div>
                 )}
               </div>
-              <p className="  text-secondary-white text-center cursor-pointer ">
-                Forgot Password
-              </p>
             </form>
           )}
         </Formik>

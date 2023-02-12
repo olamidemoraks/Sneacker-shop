@@ -116,7 +116,7 @@ const Product = () => {
     },
   ];
   return (
-    <div className="relative">
+    <div className="relative overflow-scroll h-screen">
       {isModelOpen ? (
         <Model
           values={values}
@@ -166,12 +166,13 @@ const Product = () => {
               color: `#b6b6b6 !important`,
             },
           }}
-          className="mt-10 overflow-auto"
-          autoHeight="100%"
+          className="mt-10 "
+          autoHeight="90%"
           loading={isLoading || !product}
           getRowId={(row) => row.id}
           rows={product || []}
           columns={columns}
+          pageSize={8}
         />
       </Template>
     </div>

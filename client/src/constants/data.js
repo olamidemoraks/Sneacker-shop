@@ -1,18 +1,8 @@
-import {
-  reactinfinity,
-  dunkhigh,
-  blazerlow,
-  airjordan,
-  airforce,
-  acgair,
-  revolution,
-} from "../assets";
-
 export const data = [
   {
     id: 1,
     name: "React Infinity",
-    image: reactinfinity,
+    image: "",
     price: 749,
     description:
       "A woocommerce product gallery slider for Slider Revolution with mind-blowing visuals.",
@@ -22,7 +12,7 @@ export const data = [
   {
     id: 2,
     name: "Dunk High",
-    image: dunkhigh,
+    image: "",
     price: 749,
     description:
       "A woocommerce product gallery slider for Slider Revolution with mind-blowing visuals.",
@@ -32,7 +22,7 @@ export const data = [
   {
     id: 3,
     name: "Acg air",
-    image: acgair,
+    image: "",
     price: 749,
     description:
       "A woocommerce product gallery slider for Slider Revolution with mind-blowing visuals.",
@@ -42,42 +32,11 @@ export const data = [
   {
     id: 4,
     name: "Air Force",
-    image: airforce,
+    image: "",
     price: 749,
     description:
       "A woocommerce product gallery slider for Slider Revolution with mind-blowing visuals.",
     rating: 3,
     brand: "Puma",
-  },
-  {
-    id: 5,
-    name: "Air Jordan",
-    image: airjordan,
-    price: 749,
-    description:
-      "A woocommerce product gallery slider for Slider Revolution with mind-blowing visuals.",
-    rating: 4,
-    brand: "Adidas",
-  },
-
-  {
-    id: 6,
-    name: "Blazerlow",
-    image: blazerlow,
-    price: 749,
-    description:
-      "A woocommerce product gallery slider for Slider Revolution with mind-blowing visuals.",
-    rating: 2,
-    brand: "Nike",
-  },
-  {
-    id: 7,
-    name: "Revolution",
-    image: revolution,
-    price: 749,
-    description:
-      "A woocommerce product gallery slider for Slider Revolution with mind-blowing visuals.",
-    rating: 1,
-    brand: "Nike",
   },
 ];
