@@ -72,7 +72,7 @@ const ProductDetails = () => {
           </motion.div>
           <motion.div
             variants={fadeIn("left", "tween", 0.64, 1)}
-            className="mt-2 leading-[2rem] text-[13px] text-secondary-white"
+            className="mt-2 leading-[2rem] text-[17px] text-secondary-white"
           >
             Available: {product?.inventory}
           </motion.div>
@@ -101,24 +101,24 @@ const ProductDetails = () => {
             variants={fadeIn("right", "tween", 0.6, 1)}
             htmlFor="size"
           >
-            <select
-              id="size"
-              className=" bg-transparent outline-none md:flex items-center justify-center hidden  w-[6rem]"
-              onChange={(e) => setSize(e.target.value)}
-            >
-              <option className=" bg-primary-black text-secondary-white ">
-                Size
-              </option>
-              {product?.size.map((value, index) => (
-                <option
-                  className="bg-primary-black text-secondary-white p-2 "
-                  key={index}
-                  value={value}
-                >
-                  {value}
-                </option>
-              ))}
-            </select>
+            <div className="flex gap-4 text-gray-400 hover:text-white text-[20px]">
+              <label htmlFor="size">Size</label>
+              <select
+                id="size"
+                className=" bg-transparent outline-none md:flex items-center justify-center hidden"
+                onChange={(e) => setSize(e.target.value)}
+              >
+                {product?.size.map((value, index) => (
+                  <option
+                    className="bg-primary-black text-secondary-white p-2 "
+                    key={index}
+                    value={value}
+                  >
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </div>
             {error ? (
               <p className=" text-red-500 py-2">please select your size</p>
             ) : null}
@@ -154,7 +154,7 @@ const ProductDetails = () => {
               </motion.div>
               <motion.div
                 variants={fadeIn("left", "tween", 0.54, 1)}
-                className="mt-2 leading-[2rem] text-[13px] text-secondary-white"
+                className="mt-2 leading-[2rem] text-[16px] text-secondary-white"
               >
                 Available: {product?.inventory}
               </motion.div>

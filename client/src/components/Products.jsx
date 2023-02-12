@@ -33,11 +33,17 @@ const Products = () => {
         variants={fadeIn("left", "tween", 1, 1)}
         initial="hidden"
         whileInView="show"
-        className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-7 w-full min-h-[55vh]"
+        className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-7 w-full"
       >
-        {products.map((product, index) => (
-          <Product key={index} product={product} />
-        ))}
+        {products.length > 0 ? (
+          products.map((product, index) => (
+            <Product key={index} product={product} />
+          ))
+        ) : (
+          <div className="flex justify-center items-center w-[100vw]">
+            <p className="text-center text-white text-2xl">No Item Found</p>
+          </div>
+        )}
       </motion.div>
     );
   }
@@ -45,7 +51,7 @@ const Products = () => {
   return (
     <section
       id="product"
-      className="relative overflow-hidden bg-primary-black/95  pt-[10rem] snap-center pb-[6rem]"
+      className="relative overflow-hidden bg-primary-black/95  pt-[10rem] snap-center pb-[6rem] min-h-[87vh]"
     >
       <div className="flex justify-center">
         <motion.div

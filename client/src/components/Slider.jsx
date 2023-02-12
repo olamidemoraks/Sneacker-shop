@@ -52,7 +52,7 @@ const Slider = () => {
   };
   return (
     <section
-      className={`${bgColor} relative h-[100vh] sm:px-16 px-6 overflow-hidden snap-start`}
+      className={`${bgColor} relative h-[100vh] sm:px-16 px-6 overflow-hidden snap-start slider-section`}
     >
       <motion.div
         key={index}
