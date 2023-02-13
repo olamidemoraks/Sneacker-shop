@@ -66,7 +66,7 @@ app.patch(
   editProduct
 );
 
-app.get("/api/v1/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("We are live");
 });
 app.use("/api/v1/product", productRouter);
