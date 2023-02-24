@@ -12,7 +12,7 @@ const attachCookiesToResponse = ({ res, req, user }) => {
 
   const oneDay = 1000 * 60 * 60 * 24;
   const domain = req.headers.host;
-  console.log(domain);
+  console.log("DOMAIN", domain);
   res.cookie("token", token, {
     httpOnly: true,
     domain: domain,
