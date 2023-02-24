@@ -16,8 +16,8 @@ const login = async (req, res) => {
     throw new UnauthorizedError("Invalid Credentials");
   }
   const tokenUser = createTokenUser(user);
- 
-  attachCookiesToResponse({ res, user: tokenUser });
+
+  attachCookiesToResponse({ res, req, user: tokenUser });
 
   res.status(StatusCodes.OK).json({ user: tokenUser });
 };
@@ -32,7 +32,7 @@ const register = async (req, res) => {
   req.body.role = isFirstAccount ? "admin" : "user";
   const user = await User.create(req.body);
   const tokenUser = createTokenUser(user);
-  attachCookiesToResponse({ res, user: tokenUser });
+  attachCookiesToResponse({ res, req, user: tokenUser });
   res.status(StatusCodes.CREATED).json({ user: tokenUser });
 };
 

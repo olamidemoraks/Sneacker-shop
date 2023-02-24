@@ -7,15 +7,18 @@ const createJWT = ({ payload }) => {
 
 const isTokenValid = ({ token }) => jwt.verify(token, process.env.JWT_SECRET);
 
-const attachCookiesToResponse = ({ res, user }) => {
+const attachCookiesToResponse = ({ res, req, user }) => {
   const token = createJWT({ payload: user });
 
   const oneDay = 1000 * 60 * 60 * 24;
-
+  const domain = req.headers.host;
+  console.log(domain);
   res.cookie("token", token, {
     httpOnly: true,
+    domain: domain,
+    path: "/",
     expires: new Date(Date.now() + oneDay),
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
     signed: true,
   });
 };
