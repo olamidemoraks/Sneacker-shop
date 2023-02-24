@@ -36,7 +36,7 @@ const Product = () => {
     setIsModelOpen(true);
     setValues(objectValue);
   };
-  console.log(values);
+
   const closeModel = () => {
     setIsModelOpen(false);
     setValues({});
@@ -58,7 +58,7 @@ const Product = () => {
             <div className="h-[40px] w-[40px] flex justify-center rounded-full">
               <img
                 className=" object-contain"
-                src={`http://localhost:4500/assets/${params.value}`}
+                src={`${process.env.BASE_URL}/assets/${params.value}`}
               />
             </div>
             <p className="flex-1 truncate">{params.row.name}</p>

@@ -26,7 +26,7 @@ const Products = () => {
     content = <div>Loading</div>;
   }
   if (isSuccess || data) {
-    console.log(products);
+  
 
     content = (
       <motion.div

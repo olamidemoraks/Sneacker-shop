@@ -37,13 +37,13 @@ const Product = ({ product }) => {
   return (
     <Link
       to={`product-details/${id}`}
-      className="flex flex-col w-[170px] mb-[10px] group"
+      className="flex flex-col w-[180px] mb-[10px] group"
     >
       <div
         className={`w-full lg:h-[170px] h-[150px] rounded-[20px] flex ${bgColor}  items-center justify-center relative`}
       >
         <img
-          src={`http://localhost:4500/assets/${image}`}
+          src={`${process.env.BASE_URL}/assets/${image}`}
           alt={image}
           className="-rotate-[20deg] group-hover:-rotate-[30deg] -translate-x-2 w-full -translate-y-2 z-10 ease-linear duration-300"
           loading="lazy"
@@ -52,10 +52,10 @@ const Product = ({ product }) => {
       </div>
       <div className="">
         <div className="flex w-[170px] pt-[7px] text-sm px-[6px] justify-between">
-          <p className="flex-1 max-w-[120px] uppercase truncate text-white font-semibold">
-            {name}
+          <p className="flex-1 max-w-[110px] uppercase truncate text-white font-semibold text-[12px] font-sans">
+            {name.split("-").join(" ")}
           </p>
-          <p className=" text-secondary-white font-normal">${price}</p>
+          <p className=" text-white font-normal ml-1">${price}</p>
         </div>
         <div className="flex justify-between pt-[7px] px-[6px]">
           <RatingStars

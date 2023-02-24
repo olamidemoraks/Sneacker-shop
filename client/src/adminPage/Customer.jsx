@@ -6,7 +6,7 @@ import { DataGrid } from "@mui/x-data-grid";
 
 const Customer = () => {
   const { data = [], isLoading } = useGetAllUserQuery();
-  console.log(data);
+  
   const { ids, entities } = data;
   const user = useMemo(() => {
     return ids?.map((id) => {

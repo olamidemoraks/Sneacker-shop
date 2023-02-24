@@ -6,17 +6,35 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: "Eudoxus Sans", sans-serif; */
+  
   scroll-behavior: smooth;
 }
 
 
-.white-glassmorphism {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+@font-face {
+  font-family: "Qualittle";
+  src: local("Qualittle"), url("./fonts/Qualittle.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "Semibold";
+  src: local("ClintonSemibold"), url("./fonts/ClintonSemibold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Bold";
+  src: local("ClintonBold"), url("./fonts/ClintonBold.ttf") format("truetype");
+}
+
+h1,h2,h3,h4{
+  font-family: "Bold";
+}
+
+p{
+  font-family: "Semibold";
+}
+
+
 .gradient-01{
   background-image: linear-gradient(to right top, #100344, #150f53, #1b1a63, #212573, #253083, #1f4296, #1553a8, #0065b9, #0081cc, #009cda, #00b6e4, #3cd0ec);}
 
@@ -93,3 +111,4 @@ background-image: linear-gradient(to right top, #230628, #2c0933, #360c3d, #400e
   background: linear-gradient(to top, #202020, transparent);
   z-index: 0;
 }
+

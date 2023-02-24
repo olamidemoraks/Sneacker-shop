@@ -33,7 +33,6 @@ const ProductDetails = () => {
     };
     setError(false);
 
-    console.log(cartItem);
     addItem(cartItem);
   };
 
@@ -52,7 +51,8 @@ const ProductDetails = () => {
           <div className="flex-1 w-full relative -right-[50px] md:flex flex-col gap-3 hidden ">
             <motion.p
               variants={fadeIn("left", "tween", 0.5, 1)}
-              className="text-[40px] font-semibold mb-4 uppercase"
+              className="text-[40px] font-semibold mb-1 uppercase"
+              style={{ fontFamily: "Bold" }}
             >
               {product?.name}
             </motion.p>
@@ -72,7 +72,7 @@ const ProductDetails = () => {
               variants={fadeIn("left", "tween", 0.64, 1)}
               className="mt-2 leading-[2rem] text-[17px] text-secondary-white"
             >
-              Available: {product?.inventory}
+              <p> Available: {product?.inventory}</p>
             </motion.div>
             {/* <p
               variants={fadeIn("left", "tween", 0.6, 1)}
@@ -87,7 +87,7 @@ const ProductDetails = () => {
             className="lg:h-[300px] h-[300px] lg:w-[600px] md:w-[500px] flex items-center justify-center relative md:-left-[3rem]  md:-translate-y-14 -translate-y-14 group"
           >
             <img
-              src={`http://localhost:4500/assets/${product?.image}`}
+              src={`${process.env.BASE_URL}/assets/${product?.image}`}
               alt="images"
               className="md:-rotate-[20deg] w-full md:group-hover:-rotate-[23deg] ease-linear duration-300 z-10"
             />
@@ -98,7 +98,8 @@ const ProductDetails = () => {
           <div className="flex-[0.5] flex flex-col items-start gap-4 z-[9] w-full md:justify-end">
             <motion.p
               variants={fadeIn("right", "tween", 0.5, 1)}
-              className="text-[30px] font-semibold md:block hidden text-orange-300"
+              className="text-[27px] font-bold w-[120px] md:block hidden text-orange-300"
+              style={{ fontFamily: "Bold" }}
             >
               $ {product?.price.toFixed(2)}
             </motion.p>
@@ -106,7 +107,10 @@ const ProductDetails = () => {
               variants={fadeIn("right", "tween", 0.6, 1)}
               htmlFor="size"
             >
-              <div className=" gap-4 text-gray-400 hover:text-white text-[20px] md:flex hidden">
+              <div
+                className=" gap-4 text-gray-400 hover:text-white text-[20px] md:flex hidden"
+                style={{ fontFamily: "Semibold" }}
+              >
                 <label htmlFor="size">Size</label>
                 <select
                   id="size"
@@ -144,9 +148,9 @@ const ProductDetails = () => {
           className="w-full text-lg text-justify px-[100px] absolute -bottom-20 md:block hidden "
           variants={fadeIn("left", "tween", 0.6, 1)}
         >
-          <div className="w-full">
+          <p className="w-full text-sm leading-8 pb-7">
             <span>Description: </span> <span>{product?.description}</span>
-          </div>
+          </p>
         </motion.div>
         {/* Mobile view */}
         <div className="w-full md:hidden flex justify-between items-end">

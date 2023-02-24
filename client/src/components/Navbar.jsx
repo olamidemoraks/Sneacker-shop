@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BiSearch, BiMenuAltLeft } from "react-icons/bi";
-import { FaShoppingBag, FaSearch } from "react-icons/fa";
+import { FaShoppingBag, FaSearch, FaChevronDown } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
 import { navVariants } from "../utils/motions";
 import Cart from "./Cart";
@@ -12,12 +12,13 @@ import { useCart } from "react-use-cart";
 import useAdmin from "../hooks/useAuth";
 import ProfileAvater from "../hooks/Avater";
 import { searchItem } from "../feature/others/searchSlice";
+import backupImage from "../assets/backup.png";
 
 const Navbar = () => {
   const inputRef = useRef(null);
   const dispatch = useDispatch();
   const [isMenuToggle, setIsMenuToggle] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearch, setIsSearch] = useState(false);
   const [search, setSearch] = useState("");
@@ -47,10 +48,13 @@ const Navbar = () => {
       variants={navVariants}
       initial="hidden"
       whileInView="show"
-      className=" px-6 xl:px-[rem] sm:px-16 py-8 fixed top-0 left-0 right-0 bg-transparent z-10"
+      className=" px-6 xl:px-[rem] sm:px-16 py-8 fixed top-0 left-0 right-0 bg-transparent z-10 "
     >
       <div className="flex justify-between items-center w-full bg-transparent">
-        <h2 className="text-secondary-white text-2xl font-bold uppercase">
+        <h2
+          className="text-secondary-white text-4xl font-bold uppercase tracking-wider"
+          style={{ fontFamily: "Qualittle" }}
+        >
           <Link to="/home">Sneakers</Link>
         </h2>
 
@@ -69,7 +73,10 @@ const Navbar = () => {
               />
             ))}
           </ul> */}
-          <div className="text-secondary-white tracking-wider text-center bg flex flex-col gap-1 ">
+          <div
+            className="text-secondary-white tracking-wider text-center flex flex-col gap-1 text-[14px]"
+            style={{ fontFamily: "Semibold" }}
+          >
             Just For You
             <div className="flex flex-col">
               <div className="w-[45px] h-[1px] bg-secondary-white mb-1" />
@@ -100,28 +107,43 @@ const Navbar = () => {
         ) : (
           <div className="flex items-center gap-6">
             {isAdmin ? (
-              <Link to="/admin" className="bg-white p-2 rounded-[100%]">
-                <RiAdminFill className=" text-[20px] text-black cursor-pointer" />
+              <Link to="/admin" className="bg-white p-1 rounded-[100%]">
+                <RiAdminFill className=" text-[17px] text-black cursor-pointer" />
               </Link>
             ) : null}
             <div
-              className=" border md:flex hidden border-gray-400 p-1 rounded-[100%] items-center cursor-pointer relative"
+              className="md:flex hidden   items-center cursor-pointer relative "
               onClick={() => setIsMenuToggle((prev) => !prev)}
             >
-              <ProfileAvater />
+              <div />
+              <div className="flex gap-2 items-center group hover:gap-3 ease-linear duration-200 ">
+                <div className="w-[30px] h-[30px] bg-gray-200 rounded-[3px] ">
+                  <img
+                    src={backupImage}
+                    className="w-full h-full p-1 object-contain grayscale group-hover:grayscale-0"
+                  />
+                </div>
+                <div className="flex flex-col items-end gap-1 group-hover:gap-2 ease-out duration-200">
+                  <p className=" text-gray-200 text-[12px] capitalize lg:block hidden group-hover:text-white">
+                    Welcome {name.split(" ")[0]}
+                  </p>
+                  <FaChevronDown className="text-[12px] text-gray-200 group-hover:text-white" />
+                </div>
+              </div>
 
               <div
                 className={`${
                   isMenuToggle ? " translate-y-0" : " -translate-y-[100vh]"
-                } absolute top-[55px] right-3 z-10 bg-primary-black rounded-md w-[150px] ease-linear duration-700 `}
+                } absolute top-[55px] right-3 z-10 bg-white rounded-md w-[150px] ease-linear duration-700 `}
               >
-                <ul className="flex flex-col text-secondary-white hover:text-white">
+                <ul className="flex flex-col text-primary-black hover:text-black p-3">
                   <li
                     className=" hover:bg-gray-600 hover:bg-opacity-20 py-2 px-2"
                     onClick={handleLogout}
                   >
                     <p>Logout</p>
                   </li>
+                  <hr />
                   <li className=" hover:bg-gray-600 hover:bg-opacity-20 py-2 px-2">
                     <p>Profile</p>
                   </li>
@@ -133,7 +155,10 @@ const Navbar = () => {
 
         {/* Mobile menu */}
         <div className="md:hidden relative flex justify-center items-center gap-4">
-          <BiSearch className="text-secondary-white hover:text-white text-[20px] cursor-pointer" />
+          <BiSearch
+            className="text-secondary-white hover:text-white text-[20px] cursor-pointer"
+            onClick={handleClickScroll}
+          />
           <div className="flex justify-center items-center cursor-pointer relative">
             <FaShoppingBag
               className="text-secondary-white hover:text-white text-[18px]"
@@ -146,20 +171,33 @@ const Navbar = () => {
               <div className="bg-red-600 absolute h-2 w-2 rounded-full top-0 -right-1" />
             ) : null}
           </div>
-          <BiMenuAltLeft
-            className="text-secondary-white hover:text-white text-[30px]"
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-          />
+          <div
+            className="flex gap-2 items-center"
+            onClick={() => setIsMenuToggle((prev) => !prev)}
+          >
+            <div className="w-[30px] h-[30px] bg-gray-200 rounded-[3px]">
+              <img
+                src={backupImage}
+                className="w-full h-full p-1 object-contain grayscale"
+              />
+            </div>
+            <div className="flex flex-col items-end gap-1">
+              <p className=" text-gray-200 text-sm capitalize lg:block hidden">
+                Welcome {name.split(" ")[0]}
+              </p>
+              <FaChevronDown className="text-[12px] text-gray-200 " />
+            </div>
+          </div>
 
           <div
             className={`${
-              !isMenuOpen ? "-translate-y-[100vh]" : "translate-y-0"
+              !isMenuToggle ? "-translate-y-[100vh]" : "translate-y-0"
             } min-w-[150px] max-h-[75vh] absolute top-9 right-0 z-10 
-              transition-all duration-700 bg-primary-black shadow-secondary 
+              transition-all duration-700 bg-white shadow-secondary 
               flex  items-start rounded-md
               `}
           >
-            <ul className="flex flex-col text-secondary-white hover:text-white w-full">
+            <ul className="flex flex-col text-primary-black hover:text-black w-full p-3">
               {!name ? (
                 <li className="hover:bg-gray-600 hover:bg-opacity-20 py-2 px-2 cursor-pointer">
                   Sign In
@@ -173,7 +211,7 @@ const Navbar = () => {
                     <p>Logout</p>
                   </li>
                   <li className="flex justify-between items-center hover:bg-gray-600 hover:bg-opacity-20 py-2 px-2 cursor-pointer">
-                    <p>Profile</p> <ProfileAvater />
+                    <p>Profile</p>
                   </li>
                 </>
               )}
@@ -200,7 +238,13 @@ const Navbar = () => {
             }, 1000);
           }}
         />
-        <button type="submit">
+        <button
+          type="submit"
+          onClick={() => {
+            setIsSearch(false);
+            handleSearchSubmit();
+          }}
+        >
           <FaSearch className="text-white" />
         </button>
       </div>

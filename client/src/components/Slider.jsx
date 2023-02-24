@@ -28,7 +28,6 @@ const Slider = () => {
     return item;
   }, [products]);
 
-  console.log(products);
   const arr = toFilterProduct || [];
   const filterProduct = arr.filter((product) => product.feature === true);
   const backup = data;
@@ -87,7 +86,7 @@ const Slider = () => {
             <div className="bot lg:h-[400px] md:h-[300px] sm:h-[300px] lg:w-[600px] md:w-[500px] sm:w-[450px]  group">
               {image ? (
                 <img
-                  src={`http://localhost:4500/assets/${image}`}
+                  src={`${process.env.BASE_URL}/assets/${image}`}
                   alt={name}
                   className=" object-cover -rotate-[50deg] group-hover:-rotate-[55deg] h-full sm:-translate-x-[80px] -translate-x-[40px] lg:translate-y-[50px] md:translate-y-[100px] sm:translate-y-[60px] -translate-y-[30px] w-full ease-linear duration-500"
                   loading="lazy"
@@ -107,6 +106,7 @@ const Slider = () => {
           <motion.p
             variants={slideIn("right", "spring", 0.2, 1.7)}
             className="absolute lg:text-[8rem] md:text-[7rem] sm:text-[6rem] text-[5rem] text-center lg:top-[50%] md:top-[70%] sm:top-[50%] tracking-wide uppercase  font-bold w-full left-0 "
+            style={{ fontFamily: "Bold" }}
           >
             <span className="text-white">{name.split(" ")[0]}</span>{" "}
             <span className="text_background">{name.split(" ")[1]}</span>
@@ -123,12 +123,18 @@ const Slider = () => {
             <h2 className="text-secondary-white text-xl font-bold">
               $ {price}
             </h2>
-            <p className="text-secondary-white font-light tracking-wide text-[16px] leading-7">
+            <p
+              className="text-secondary-white font-light tracking-wide text-[12px] leading-7"
+              style={{ fontFamily: "Semibold" }}
+            >
               {description.substring(0, 100)} ...
             </p>
           </div>
           <Link to={`product-details/${id}`}>
-            <p className="uppercase font-bold text-white border-b-[2px] pb-[5px] border-secondary-white/50 hover:pb-[10px] ease-linear duration-200">
+            <p
+              className="uppercase font-bold text-white border-b-[2px] pb-[5px] border-secondary-white/50 hover:pb-[10px] ease-linear duration-200"
+              style={{ fontFamily: "Bold" }}
+            >
               Buy now
             </p>
           </Link>

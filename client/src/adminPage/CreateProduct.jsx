@@ -51,7 +51,7 @@ const CreateProduct = () => {
     }),
   });
 
-  console.log(product);
+  
 
   let initialValueProductForm = {
     name: product?.name || "",
@@ -98,9 +98,9 @@ const CreateProduct = () => {
       toast.success("Product Updated Created 🚀");
       navigate("/admin/product");
 
-      console.log(data);
+      
     } catch (error) {
-      console.log("Error", error);
+      
       toast.error(`${error?.data?.msg}`);
     }
   };
@@ -121,7 +121,7 @@ const CreateProduct = () => {
       const data = await createProduct(formData);
       // onSubmitProps.resetForm();
       toast.success("Product Successfully Created 🚀");
-      console.log(data);
+     
     } catch (error) {
       console.log("Error", error);
     }

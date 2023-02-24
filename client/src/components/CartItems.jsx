@@ -13,11 +13,11 @@ const CartItems = ({
   remove,
 }) => {
   return (
-    <div className="w-full h-[130px] bg-primary-black rounded-[8px] py-2 px-3 flex justify-between relative group ">
+    <div className="w-full h-[130px] bg-primary-black rounded-[8px] py-2 px-3 flex justify-between relative group">
       <div className="flex">
         <div className="w-[120px] h-full  rounded-md">
           <img
-            src={`http://localhost:4500/assets/${image}`}
+            src={`${process.env.BASE_URL}/assets/${image}`}
             alt={image}
             className=" -translate-y-4"
           />
@@ -27,13 +27,17 @@ const CartItems = ({
             <p className="text-white text-[17px] truncate w-full min-w-[100px]">
               {name}
             </p>
-            <p className=" text-secondary-white/80">Size: {size}</p>
+            <p className=" text-secondary-white/80  font-sans">Size: {size}</p>
           </div>
-          <p className="text-sm text-secondary-white pb-3">$ {price}</p>
+          <p className="text-sm text-secondary-white pb-3  font-sans font-bold">
+            $ {price}
+          </p>
         </div>
       </div>
       <div className="flex items-end flex-col justify-between py-1 text-secondary-white gap-3">
-        <p className="text-green-400">Total: $ {itemTotal.toFixed(2)}</p>
+        <p className="text-green-400  font-sans">
+          Total: $ {itemTotal.toFixed(2)}
+        </p>
         <div className="flex items-end flex-col justify-end  gap-3">
           <p className="text-sm text-secondary-white">Quantity: {quantity}</p>
           <div className="flex justify-between w-[100px] bg-secondary-white/20 gap-2 rounded-lg px-5 border-[1px] border-white/20 items-center">

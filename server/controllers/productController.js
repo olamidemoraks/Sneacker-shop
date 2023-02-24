@@ -25,7 +25,7 @@ const getProduct = async (req, res) => {
 };
 
 const editProduct = async (req, res) => {
-  console.log(req.body);
+
   req.body.size = req.body.shoeSize.split(",");
   const { id: productId } = req.body;
   const product = await Product.findOne({ _id: productId }).lean();
@@ -39,10 +39,10 @@ const editProduct = async (req, res) => {
 
   if (product.image !== updatedProduct.image) {
     const filename = getImage(product.image);
-    console.log(filename);
+   
     const isDuplicate = await Product.findOne({ image: filename }).lean();
     if (isDuplicate) {
-      console.log("Duplicate image exist");
+     
     } else {
       deleteImage(filename);
     }
@@ -58,10 +58,10 @@ const deleteProduct = async (req, res) => {
 
   const deleteProducted = await product.remove({ new: true });
   const filename = getImage(deleteProducted.image);
-  console.log(filename);
+
   const isDuplicate = await Product.findOne({ image: filename }).lean();
   if (isDuplicate) {
-    console.log("Duplicate image exist");
+    
   } else {
     deleteImage(filename);
   }

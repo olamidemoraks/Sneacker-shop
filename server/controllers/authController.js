@@ -16,7 +16,7 @@ const login = async (req, res) => {
     throw new UnauthorizedError("Invalid Credentials");
   }
   const tokenUser = createTokenUser(user);
-  console.log("token", tokenUser);
+ 
   attachCookiesToResponse({ res, user: tokenUser });
 
   res.status(StatusCodes.OK).json({ user: tokenUser });

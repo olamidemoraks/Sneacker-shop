@@ -18,7 +18,7 @@ const userApiSlice = apiSlice.injectEndpoints({
           data.id = data._id;
           return data;
         });
-        console.log(responseData);
+        
 
         return userAdapter.setAll(initialState, responseData);
       },

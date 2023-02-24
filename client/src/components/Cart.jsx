@@ -71,7 +71,7 @@ const Cart = ({ open, handleClose }) => {
                   <p className=" text-white text-base">
                     Total: ({totalItems} item)
                   </p>
-                  <p className=" text-white text-[30px] font-semibold">
+                  <p className=" text-white text-[30px] font-semibold  font-sans">
                     $ {(cartTotal + Number(2.99)).toFixed(2)}
                   </p>
                 </div>
