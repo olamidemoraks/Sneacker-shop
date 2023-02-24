@@ -2,7 +2,7 @@ const User = require("../models/User");
 const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, UnauthorizedError } = require("../errors");
 const createTokenUser = require("../utils/createToken");
-const { attachCookiesToResponse } = require("../utils/jwt");
+const { attachCookiesToResponse, createJWT } = require("../utils/jwt");
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -16,10 +16,10 @@ const login = async (req, res) => {
     throw new UnauthorizedError("Invalid Credentials");
   }
   const tokenUser = createTokenUser(user);
+  const token = createJWT({ payload: tokenUser });
+  attachCookiesToResponse({ res, req, token });
 
-  attachCookiesToResponse({ res, req, user: tokenUser });
-
-  res.status(StatusCodes.OK).json({ user: tokenUser });
+  res.status(StatusCodes.OK).json({ user: tokenUser, token });
 };
 
 const register = async (req, res) => {
@@ -32,8 +32,9 @@ const register = async (req, res) => {
   req.body.role = isFirstAccount ? "admin" : "user";
   const user = await User.create(req.body);
   const tokenUser = createTokenUser(user);
-  attachCookiesToResponse({ res, req, user: tokenUser });
-  res.status(StatusCodes.CREATED).json({ user: tokenUser });
+  const token = createJWT({ payload: tokenUser });
+  attachCookiesToResponse({ res, req, token });
+  res.status(StatusCodes.CREATED).json({ user: tokenUser.token });
 };
 
 const logout = async (req, res) => {

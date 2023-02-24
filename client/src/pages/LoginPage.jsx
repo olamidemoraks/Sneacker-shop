@@ -62,8 +62,8 @@ const LoginPage = () => {
   async function login(values) {
     try {
       const data = await loginFn(values).unwrap();
-      dispatch(setCredentials({ user: data.user }));
-
+      dispatch(setCredentials({ user: { ...data.user, token: data.token } }));
+      console.log(data);
       if (data.user.role !== "admin") {
         navigate("/home");
       } else {

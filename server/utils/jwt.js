@@ -7,9 +7,7 @@ const createJWT = ({ payload }) => {
 
 const isTokenValid = ({ token }) => jwt.verify(token, process.env.JWT_SECRET);
 
-const attachCookiesToResponse = ({ res, req, user }) => {
-  const token = createJWT({ payload: user });
-
+const attachCookiesToResponse = ({ res, req, token }) => {
   const oneDay = 1000 * 60 * 60 * 24;
   const domain = req.headers.host;
   console.log("DOMAIN", domain);
