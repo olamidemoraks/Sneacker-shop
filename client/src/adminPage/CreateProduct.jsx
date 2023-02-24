@@ -12,7 +12,7 @@ import {
   useUpdateProductMutation,
 } from "../feature/product/productApiSlice";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 
 const ProductSchema = yup.object().shape({
   name: yup.string().min(3).required("please fill in product name"),
@@ -93,9 +93,10 @@ const CreateProduct = () => {
     var json = Object.fromEntries(formData);
     try {
       const data = await updateProduct(formData);
-      toast.success("Product Updated Created 🚀");
-      navigate("/admin/product");
+      // navigate("/admin/product");
+      toast.success("Product Updated Succesfully 🚀");
     } catch (error) {
+      console.log(error);
       toast.error(`${error?.data?.msg}`);
     }
   };

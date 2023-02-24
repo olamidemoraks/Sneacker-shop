@@ -1,5 +1,7 @@
 import React from "react";
 import { useDeleteProductMutation } from "../../feature/product/productApiSlice";
+import { toast, Toaster } from "react-hot-toast";
+import { BeatLoader } from "react-spinners";
 
 const Model = ({ values, isModelOpen, closeModel }) => {
   const [deleteProduct, { isLoading, isSuccess }] = useDeleteProductMutation();
@@ -7,14 +9,18 @@ const Model = ({ values, isModelOpen, closeModel }) => {
   const handleDelete = async () => {
     const { id } = values;
     await deleteProduct({ id }).unwrap;
-    if (isLoading) {
-      return <p>Loading</p>;
-    }
+
+    toast.success("Successfully Deleted");
     closeModel();
   };
 
+  if (isLoading) {
+    return <BeatLoader size={15} color="#d0d0d0" />;
+  }
+
   return (
     <div>
+      <Toaster />
       <div className="bg-black/10 opacity-[20rem] w-[100%] h-[100vh] z-10 absolute flex  justify-center pt-[200px] ">
         <div className="h-[270px] w-[500px] bg-primary-black/95 relative z-10  flex flex-col justify-between rounded-md">
           <div
