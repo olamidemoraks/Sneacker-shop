@@ -10,6 +10,7 @@ import {
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCredentials } from "../feature/auth/authSlice";
+import { SyncLoader } from "react-spinners";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("please enter your first name"),
@@ -45,8 +46,8 @@ const initialValueLoginForm = {
 };
 
 const LoginPage = () => {
-  const [loginFn] = useLoginMutation();
-  const [registerFn] = useRegisterMutation();
+  const [loginFn, { isLoading: loginLoading }] = useLoginMutation();
+  const [registerFn, { isLoading: registerLoading }] = useRegisterMutation();
 
   const [formType, setformType] = useState("login");
   const [errorDetails, setErrorDetails] = useState("");
@@ -182,7 +183,13 @@ const LoginPage = () => {
                 isVisible={isVisible}
               />
               <button className="gradient-05 py-2 rounded-md mt-3 text-white text-[17px] font-semibold">
-                {isLogin ? "Sign in" : "Sign up"}
+                {registerLoading || loginLoading ? (
+                  <>
+                    <SyncLoader size={7} color="#fff" />
+                  </>
+                ) : (
+                  <>{isLogin ? "Sign in" : "Sign up"}</>
+                )}
               </button>
               <div className="">
                 {isLogin ? (
@@ -194,7 +201,6 @@ const LoginPage = () => {
                         handleFormTransition(resetForm, "register")
                       }
                     >
-                      {" "}
                       Create Account
                     </span>
                   </div>
