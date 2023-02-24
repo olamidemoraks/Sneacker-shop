@@ -3,7 +3,7 @@ const { isTokenValid } = require("../utils/jwt");
 
 const autheticateUser = (req, res, next) => {
   const token = req.signedCookies.token;
-
+  console.log(token);
   if (!token) throw new UnauthenticatedError("Authentication Invalid");
   try {
     const { userId, name, role } = isTokenValid({ token });
