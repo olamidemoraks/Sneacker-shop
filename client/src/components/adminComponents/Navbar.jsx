@@ -1,7 +1,6 @@
 import React from "react";
 import { IoSearch, IoNotificationsOutline } from "react-icons/io5";
 import useAuth from "../../hooks/useAuth";
-import ProfileAvater from "../../hooks/Avater";
 
 const Navbar = () => {
   const { name } = useAuth();

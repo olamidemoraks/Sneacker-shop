@@ -10,7 +10,6 @@ import { logout } from "../feature/auth/authSlice";
 import { useDispatch } from "react-redux";
 import { useCart } from "react-use-cart";
 import useAdmin from "../hooks/useAuth";
-import ProfileAvater from "../hooks/Avater";
 import { searchItem } from "../feature/others/searchSlice";
 import backupImage from "../assets/backup.png";
 
