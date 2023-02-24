@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { productSearch } from "../feature/others/searchSlice";
 import { useGetProductsQuery } from "../feature/product/productApiSlice";
 import { fadeIn, staggerContainer, zoomIn } from "../utils/motions";
+import { BeatLoader } from "react-spinners";
 import Product from "./Product";
 
 const Products = () => {
@@ -23,11 +24,13 @@ const Products = () => {
   }, [searchProduct, data]);
   let content;
   if (isLoading) {
-    content = <div>Loading</div>;
+    content = (
+      <div className="flex items-center justify-center h-[60vh]">
+        <BeatLoader size={23} color="#d0d0d0" />
+      </div>
+    );
   }
   if (isSuccess || data) {
-  
-
     content = (
       <motion.div
         variants={fadeIn("left", "tween", 1, 1)}

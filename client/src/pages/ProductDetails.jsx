@@ -5,6 +5,7 @@ import { fadeIn, staggerContainer } from "../utils/motions";
 import { useGetProductsQuery } from "../feature/product/productApiSlice";
 import RatingStars from "../components/RatingStars";
 import { useCart } from "react-use-cart";
+import { toast, Toaster } from "react-hot-toast";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -34,6 +35,7 @@ const ProductDetails = () => {
     setError(false);
 
     addItem(cartItem);
+    toast.success("Added Successfully to Cart");
   };
 
   return (
@@ -43,6 +45,7 @@ const ProductDetails = () => {
       whileInView="show"
       className=" bg-primary-black/95 relative h-screen text-white flex items-center justify-center overflow-x-hidden"
     >
+      <Toaster />
       <div className="absolute text-[450px] text-gray-100 opacity-5 uppercase z-0 font-semibold leading-9">
         {product?.brand}
       </div>
@@ -117,6 +120,7 @@ const ProductDetails = () => {
                   className=" bg-transparent outline-none  items-center justify-center "
                   onChange={(e) => setSize(e.target.value)}
                 >
+                  <option value=""></option>
                   {product?.size.map((value, index) => (
                     <option
                       className="bg-primary-black text-secondary-white p-2 "

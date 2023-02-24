@@ -10,7 +10,7 @@ import {
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCredentials } from "../feature/auth/authSlice";
-import { SyncLoader } from "react-spinners";
+import { BeatLoader } from "react-spinners";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("please enter your first name"),
@@ -185,7 +185,7 @@ const LoginPage = () => {
               <button className="gradient-05 py-2 rounded-md mt-3 text-white text-[17px] font-semibold">
                 {registerLoading || loginLoading ? (
                   <>
-                    <SyncLoader size={7} color="#fff" />
+                    <BeatLoader size={7} color="#fff" />
                   </>
                 ) : (
                   <>{isLogin ? "Sign in" : "Sign up"}</>

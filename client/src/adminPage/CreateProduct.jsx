@@ -12,7 +12,7 @@ import {
   useUpdateProductMutation,
 } from "../feature/product/productApiSlice";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const ProductSchema = yup.object().shape({
   name: yup.string().min(3).required("please fill in product name"),
@@ -50,8 +50,6 @@ const CreateProduct = () => {
       product: data?.entities[id],
     }),
   });
-
-  
 
   let initialValueProductForm = {
     name: product?.name || "",
@@ -97,10 +95,7 @@ const CreateProduct = () => {
       const data = await updateProduct(formData);
       toast.success("Product Updated Created 🚀");
       navigate("/admin/product");
-
-      
     } catch (error) {
-      
       toast.error(`${error?.data?.msg}`);
     }
   };
@@ -121,9 +116,9 @@ const CreateProduct = () => {
       const data = await createProduct(formData);
       // onSubmitProps.resetForm();
       toast.success("Product Successfully Created 🚀");
-     
     } catch (error) {
       console.log("Error", error);
+      toast.error(`${error?.data?.msg}`);
     }
   };
 
@@ -139,6 +134,7 @@ const CreateProduct = () => {
   if (product || id === undefined) {
     content = (
       <div className="overflow-auto h-full">
+        <Toaster />
         <Template
           title={`${id ? "Update" : "Create New"} Product`}
           style="text-[18px] text-center pt-[2rem]"
