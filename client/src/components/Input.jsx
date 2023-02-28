@@ -24,12 +24,12 @@ const Input = ({
         className={`${
           Boolean(touched) && Boolean(error) ? " border-red-500" : borderColor
         } border-[1px]  w-full ${
-          textArea ? "" : "h-[40px]"
-        } flex justify-between items-center p-2 px-3 rounded-lg  `}
+          textArea ? "" : "h-[43px]"
+        } flex justify-between items-center py-4 px-4 rounded-sm `}
       >
         {!textArea ? (
           <input
-            className="outline-none bg-transparent  text-white placeholder:text-secondary-white/40 flex-1"
+            className="outline-none bg-transparent  text-white placeholder:text-secondary-white/40 placeholder:text-sm flex-1 text-sm"
             type={name !== "password" ? type : isVisible ? "text" : "password"}
             name={name}
             placeholder={placeholder}
@@ -71,7 +71,7 @@ const Input = ({
         )}
       </div>
       {Boolean(touched) && Boolean(error) && (
-        <p className=" text-red-500 text-sm pl-2 pt-1">{touched && error}</p>
+        <p className=" text-red-500 text-[11px] pt-2">{touched && error}</p>
       )}
     </div>
   );

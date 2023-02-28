@@ -10,6 +10,7 @@ const {
   showCurrentUser,
   updateUser,
   updateUserPassword,
+  updateUserInformation,
 } = require("../controllers/userController");
 
 router
@@ -19,7 +20,9 @@ router
 router.route("/showMe").get(autheticateUser, showCurrentUser);
 router.route("/updateUser").patch(autheticateUser, updateUser);
 router.route("/updateUserPassword").patch(autheticateUser, updateUserPassword);
-
+router
+  .route("/updateUserInformation")
+  .patch(autheticateUser, updateUserInformation);
 router.route("/:id").get(autheticateUser, getSingleUser);
 
 module.exports = router;

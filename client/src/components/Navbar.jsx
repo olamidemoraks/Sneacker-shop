@@ -24,7 +24,7 @@ const Navbar = () => {
 
   const { totalUniqueItems } = useCart();
 
-  const { name, isAdmin } = useAdmin();
+  const { name, isAdmin, isExpired } = useAdmin();
 
   function handleSearchSubmit() {
     dispatch(searchItem({ search }));
@@ -96,7 +96,7 @@ const Navbar = () => {
             ) : null}
           </div>
         </div>
-        {!name ? (
+        {!name || isExpired ? (
           <Link
             to="/"
             className="md:block hidden border-[1px] border-secondary-white uppercase text-[17px] font-semibold px-[9px] py-[4px] text-secondary-white cursor-pointer hover:text-white hover:border-white"
@@ -105,7 +105,7 @@ const Navbar = () => {
           </Link>
         ) : (
           <div className="flex items-center gap-6">
-            {isAdmin ? (
+            {isAdmin && !isExpired ? (
               <Link to="/admin" className="bg-white p-1 rounded-[100%]">
                 <RiAdminFill className=" text-[17px] text-black cursor-pointer" />
               </Link>
@@ -136,15 +136,15 @@ const Navbar = () => {
                 } absolute top-[55px] right-3 z-10 bg-white rounded-md w-[150px] ease-linear duration-700 `}
               >
                 <ul className="flex flex-col text-primary-black hover:text-black p-3">
+                  <li className=" hover:bg-gray-600 hover:bg-opacity-20 py-2 px-2">
+                    <p>Profile</p>
+                  </li>
+                  <hr />
                   <li
                     className=" hover:bg-gray-600 hover:bg-opacity-20 py-2 px-2"
                     onClick={handleLogout}
                   >
                     <p>Logout</p>
-                  </li>
-                  <hr />
-                  <li className=" hover:bg-gray-600 hover:bg-opacity-20 py-2 px-2">
-                    <p>Profile</p>
                   </li>
                 </ul>
               </div>
@@ -170,6 +170,7 @@ const Navbar = () => {
               <div className="bg-red-600 absolute h-2 w-2 rounded-full top-0 -right-1" />
             ) : null}
           </div>
+
           <div
             className="flex gap-2 items-center"
             onClick={() => setIsMenuToggle((prev) => !prev)}
@@ -197,20 +198,23 @@ const Navbar = () => {
               `}
           >
             <ul className="flex flex-col text-primary-black hover:text-black w-full p-3">
-              {!name ? (
-                <li className="hover:bg-gray-600 hover:bg-opacity-20 py-2 px-2 cursor-pointer">
+              {!name || isExpired ? (
+                <Link
+                  to="/"
+                  className="hover:bg-gray-600 hover:bg-opacity-20 py-2 px-2 cursor-pointer"
+                >
                   Sign In
-                </li>
+                </Link>
               ) : (
                 <>
+                  <li className="flex justify-between items-center hover:bg-gray-600 hover:bg-opacity-20 py-2 px-2 cursor-pointer">
+                    <p>Profile</p>
+                  </li>
                   <li
                     className=" hover:bg-gray-600 hover:bg-opacity-20 py-2 px-2 cursor-pointer"
                     onClick={handleLogout}
                   >
                     <p>Logout</p>
-                  </li>
-                  <li className="flex justify-between items-center hover:bg-gray-600 hover:bg-opacity-20 py-2 px-2 cursor-pointer">
-                    <p>Profile</p>
                   </li>
                 </>
               )}

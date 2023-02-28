@@ -6,7 +6,6 @@ const createTokenUser = require("../utils/createToken");
 const checkPermission = require("../utils/checkPermission");
 
 const getAllUsers = async (req, res) => {
-  
   const users = await User.find({ role: "user" }).select("-password");
   res.status(StatusCodes.OK).json({ users });
 };
@@ -57,10 +56,31 @@ const updateUserPassword = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Success! Password Updated." });
 };
 
+const updateUserInformation = async (req, res) => {
+  const { userId } = req.user;
+  const { address, city, country, firstname, lastname, zipCode, phoneNumber } =
+    req.body;
+  const user = await User.findById(userId);
+  if (!user) {
+    throw new CustomError.BadRequestError("user does not exist");
+  }
+  user.address = address;
+  user.city = city;
+  user.firstname = firstname;
+  user.lastname = lastname;
+  user.country = country;
+  user.zipCode = zipCode;
+  user.name = `${firstname} ${lastname}`;
+
+  await user.save();
+  res.status(StatusCodes.OK).json("Update was successful");
+};
+
 module.exports = {
   getAllUsers,
   getSingleUser,
   showCurrentUser,
   updateUser,
   updateUserPassword,
+  updateUserInformation,
 };

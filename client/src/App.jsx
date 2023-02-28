@@ -1,14 +1,11 @@
-import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import reactLogo from "./assets/react.svg";
-import Layout from "./components/Layout";
 import AdminLayout from "./components/adminComponents/AdminLayout";
-import Home from "./pages/Home";
-import LoginPage from "./pages/LoginPage";
-import ProductDetails from "./pages/ProductDetails";
-import { Overview, Product, Customer, Order, CreateProduct } from "./adminPage";
-import useAuth from "./hooks/useAuth";
+import Layout from "./components/Layout";
 import { Navigate } from "react-router-dom";
+import { CreateProduct, Customer, Order, Overview, Product } from "./adminPage";
+import useAuth from "./hooks/useAuth";
+import { Checkout, Home, LoginPage, ProductDetails } from "./pages";
+import { lazy } from "react";
 
 function App() {
   const { isAdmin, name } = useAuth();
@@ -22,6 +19,7 @@ function App() {
         <Route path="/home" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="product-details/:id" element={<ProductDetails />} />
+          <Route path="checkout" element={<Checkout />} />
         </Route>
         <Route
           path="/admin"

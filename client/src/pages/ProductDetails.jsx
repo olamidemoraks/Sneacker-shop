@@ -23,6 +23,7 @@ const ProductDetails = () => {
   const addToCart = (product) => {
     if (size.length === 0) {
       setError(true);
+      toast.error("Please select your size");
       return;
     }
     const cartItem = {
@@ -45,11 +46,11 @@ const ProductDetails = () => {
       whileInView="show"
       className=" bg-primary-black/95 relative h-screen text-white flex items-center justify-center overflow-x-hidden"
     >
-      <Toaster />
       <div className="absolute text-[450px] text-gray-100 opacity-5 uppercase z-0 font-semibold leading-9">
         {product?.brand}
       </div>
       <div className="xl:w-[70%] lg:w-[80%] md:w-[90%] w-[80%] flex justify-center flex-col relative h-full">
+        <Toaster position="top-right" />
         <div className="flex md:flex-row flex-col">
           <div className="flex-1 w-full relative -right-[50px] md:flex flex-col gap-3 hidden ">
             <motion.p

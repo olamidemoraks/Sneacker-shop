@@ -1,18 +1,18 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import Template from "../components/adminComponents/Template";
-import * as yup from "yup";
 import { Formik } from "formik";
-import Input from "../components/Input";
-import CreatableReactSelect from "react-select/creatable";
+import React, { useState } from "react";
 import Dropzone from "react-dropzone";
+import { toast, Toaster } from "react-hot-toast";
 import { IoPencil } from "react-icons/io5";
+import { useNavigate, useParams } from "react-router-dom";
+import CreatableReactSelect from "react-select/creatable";
+import * as yup from "yup";
+import Template from "../components/adminComponents/Template";
+import Input from "../components/Input";
 import {
   useCreateProductMutation,
   useGetProductsQuery,
   useUpdateProductMutation,
 } from "../feature/product/productApiSlice";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { toast, Toaster } from "react-hot-toast";
 
 const ProductSchema = yup.object().shape({
   name: yup.string().min(3).required("please fill in product name"),

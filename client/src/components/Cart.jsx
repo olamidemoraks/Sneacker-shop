@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import { data } from "../constants/data";
 import CartItems from "./CartItems";
 import { useCart } from "react-use-cart";
+import useAuth from "../hooks/useAuth";
 
 const Cart = ({ open, handleClose }) => {
+  const { token, isExpired } = useAuth();
   const {
     totalItems,
     totalUniqueItems,
@@ -25,7 +27,7 @@ const Cart = ({ open, handleClose }) => {
       } absolute top-0 right-0 left-0 bg-black/70 opacity-[10rem] w-[100%] h-[100vh] overflow-hidden transition-all duration-700  `}
     >
       <div
-        className={` lg:w-[40%] md:w-[60%] w-[100%] bg-black/60 h-full float-right overflow-y-auto overflow-x-hidden`}
+        className={`xl:w-[40%] lg:w-[50%] md:w-[60%] w-[100%] bg-black/60 h-full float-right overflow-y-auto overflow-x-hidden`}
       >
         <div
           className="  absolute w-[30px] h-[30px] text-[1.6rem] p-4 cursor-pointer"
@@ -58,7 +60,7 @@ const Cart = ({ open, handleClose }) => {
                 <div className="flex justify-between">
                   <p className=" text-white text-lg">Sub Total:</p>
                   <p className=" text-white text-lg">
-                    $ {cartTotal.toFixed(2)}
+                    $ {cartTotal.toLocaleString("en-us")}
                   </p>
                 </div>
                 <div className="flex justify-between">
@@ -72,12 +74,26 @@ const Cart = ({ open, handleClose }) => {
                     Total: ({totalItems} item)
                   </p>
                   <p className=" text-white text-[30px] font-semibold  font-sans">
-                    $ {(cartTotal + Number(2.99)).toFixed(2)}
+                    $ {(cartTotal + Number(2.99)).toLocaleString("en-us")}
                   </p>
                 </div>
-                <Link to="" className="p-4 rounded-lg bg-white text-xl">
-                  Proceed to checkout
-                </Link>
+                {token && !isExpired ? (
+                  <Link
+                    to="/home/checkout"
+                    className="p-4 rounded-lg bg-white text-xl"
+                    onClick={() => handleClose(false)}
+                  >
+                    Proceed to checkout
+                  </Link>
+                ) : (
+                  <Link
+                    to="/"
+                    className="p-4 rounded-lg bg-white text-xl"
+                    onClick={() => handleClose(false)}
+                  >
+                    Proceed to checkout
+                  </Link>
+                )}
               </div>
             </div>
           </div>

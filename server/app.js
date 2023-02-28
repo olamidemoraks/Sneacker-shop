@@ -21,6 +21,7 @@ const productRouter = require("./routers/product");
 const authRouter = require("./routers/auth");
 const userRouter = require("./routers/user");
 const corOptions = require("./config/corsOption");
+const orderRouter = require("./routers/order");
 
 //middleware
 const notFoundMiddleware = require("./middleware/not-found");
@@ -72,6 +73,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/order", orderRouter);
 
 app.use(errorHandlerMiddleware);
 app.use(notFoundMiddleware);

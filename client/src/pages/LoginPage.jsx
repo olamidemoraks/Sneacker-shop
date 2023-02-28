@@ -8,9 +8,11 @@ import {
   useRegisterMutation,
 } from "../feature/auth/authApiSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setCredentials } from "../feature/auth/authSlice";
 import { BeatLoader } from "react-spinners";
+import { toast, Toaster } from "react-hot-toast";
+import { IoHome } from "react-icons/io5";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("please enter your first name"),
@@ -50,7 +52,6 @@ const LoginPage = () => {
   const [registerFn, { isLoading: registerLoading }] = useRegisterMutation();
 
   const [formType, setformType] = useState("login");
-  const [errorDetails, setErrorDetails] = useState("");
   const [isVisible, setIsVisible] = useState(false);
 
   const isLogin = formType === "login";
@@ -70,7 +71,7 @@ const LoginPage = () => {
         navigate("/admin");
       }
     } catch (error) {
-      setErrorDetails(error?.data?.msg);
+      toast.error(error?.data?.msg);
     }
   }
   async function register(values, formProps) {
@@ -87,7 +88,7 @@ const LoginPage = () => {
       setformType("login");
       setErrorDetails("");
     } catch (error) {
-      setErrorDetails(error?.data?.msg);
+      toast.error(error?.data?.msg);
     }
   }
   async function handleSubmitForm(values, formProps) {
@@ -101,20 +102,21 @@ const LoginPage = () => {
   }
   return (
     <div className=" bg-primary-black h-[100vh] flex pt-[12rem] justify-center relative">
+      <Link
+        to="/home"
+        className="absolute top-5 left-9 text-lg text-white flex items-center gap-2 z-10"
+      >
+        <IoHome /> Home
+      </Link>
       <div className="flex flex-col items-center  w-[400px]">
+        <Toaster position="top-right" />
         <div className="w-[150px] h-[150px] rounded-full gradient-05 absolute -top-12 md:left-[25rem] -left-8 " />
         <div className="w-[80px] h-[80px] rounded-full gradient-06 absolute top-12 md:right-[36rem] right-10 " />
         <p className=" text-3xl font-bold text-white mb-[2rem]">
           {" "}
           {isLogin ? "Sign in." : "Sign up."}
         </p>
-        <p
-          className={`py-2 px-2 bg-red-400/10 text-red-400 my-2 w-full rounded-md ${
-            errorDetails ? "block" : "hidden"
-          }`}
-        >
-          {errorDetails}
-        </p>
+
         <Formik
           onSubmit={handleSubmitForm}
           initialValues={
@@ -138,50 +140,86 @@ const LoginPage = () => {
             >
               {isRegister && (
                 <>
-                  <Input
-                    value={values.firstName}
-                    placeholder="John"
-                    type="text"
-                    name="firstName"
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    error={errors.firstName}
-                    touched={touched.firstName}
-                  />
-                  <Input
-                    value={values.lastName}
-                    placeholder="Doe"
-                    type="text"
-                    name="lastName"
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    error={errors.lastName}
-                    touched={touched.lastName}
-                  />
+                  <div className="flex flex-col gap-2">
+                    <label
+                      className=" text-secondary-white text-sm"
+                      htmlFor="fname"
+                    >
+                      FIRST NAME
+                    </label>
+                    <Input
+                      id="fname"
+                      value={values.firstName}
+                      placeholder="John"
+                      type="text"
+                      name="firstName"
+                      handleBlur={handleBlur}
+                      handleChange={handleChange}
+                      error={errors.firstName}
+                      touched={touched.firstName}
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <label
+                      className=" text-secondary-white text-sm"
+                      htmlFor="fname"
+                    >
+                      LAST NAME
+                    </label>
+                    <Input
+                      value={values.lastName}
+                      placeholder="Doe"
+                      type="text"
+                      name="lastName"
+                      handleBlur={handleBlur}
+                      handleChange={handleChange}
+                      error={errors.lastName}
+                      touched={touched.lastName}
+                    />
+                  </div>
                 </>
               )}
-              <Input
-                value={values.email}
-                placeholder="example@mail.com"
-                type="text"
-                name="email"
-                handleBlur={handleBlur}
-                handleChange={handleChange}
-                error={errors.email}
-                touched={touched.email}
-              />
-              <Input
-                value={values.password}
-                placeholder="*******"
-                type="text"
-                name="password"
-                handleBlur={handleBlur}
-                handleChange={handleChange}
-                error={errors.password}
-                touched={touched.password}
-                setIsVisible={setIsVisible}
-                isVisible={isVisible}
-              />
+
+              <div className="flex flex-col gap-2">
+                <label
+                  className=" text-secondary-white text-sm"
+                  htmlFor="fname"
+                >
+                  EMAIL
+                </label>
+                <Input
+                  value={values.email}
+                  placeholder="example@mail.com"
+                  type="text"
+                  name="email"
+                  handleBlur={handleBlur}
+                  handleChange={handleChange}
+                  error={errors.email}
+                  touched={touched.email}
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label
+                  className=" text-secondary-white text-sm"
+                  htmlFor="fname"
+                >
+                  PASSWORD
+                </label>
+                <Input
+                  value={values.password}
+                  placeholder="*******"
+                  type="text"
+                  name="password"
+                  handleBlur={handleBlur}
+                  handleChange={handleChange}
+                  error={errors.password}
+                  touched={touched.password}
+                  setIsVisible={setIsVisible}
+                  isVisible={isVisible}
+                />
+              </div>
               <button className="gradient-05 py-2 rounded-md mt-3 text-white text-[17px] font-semibold">
                 {registerLoading || loginLoading ? (
                   <>
@@ -194,7 +232,7 @@ const LoginPage = () => {
               <div className="">
                 {isLogin ? (
                   <div className=" text-gray-500 text-center mt-4">
-                    Don't have an account?
+                    Don't have an account?{" "}
                     <span
                       className="text-secondary-white cursor-pointer"
                       onClick={() =>

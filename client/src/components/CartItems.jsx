@@ -35,8 +35,8 @@ const CartItems = ({
         </div>
       </div>
       <div className="flex items-end flex-col justify-between py-1 text-secondary-white gap-3">
-        <p className="text-green-400  font-sans">
-          Total: $ {itemTotal.toFixed(2)}
+        <p className="text-green-400 font-semibold font-sans">
+          Total: ${itemTotal.toLocaleString("en-us")}
         </p>
         <div className="flex items-end flex-col justify-end  gap-3">
           <p className="text-sm text-secondary-white">Quantity: {quantity}</p>

@@ -18,7 +18,6 @@ const userApiSlice = apiSlice.injectEndpoints({
           data.id = data._id;
           return data;
         });
-        
 
         return userAdapter.setAll(initialState, responseData);
       },
@@ -33,8 +32,18 @@ const userApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
+    updateUserInformation: builder.mutation({
+      query: (initialData) => ({
+        url: "/user/updateUserInformation",
+        method: "PATCH",
+        body: {
+          ...initialData,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetAllUserQuery } = userApiSlice;
+export const { useGetAllUserQuery, useUpdateUserInformationMutation } =
+  userApiSlice;
 export default userApiSlice;
