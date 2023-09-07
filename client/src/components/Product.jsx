@@ -37,25 +37,25 @@ const Product = ({ product }) => {
   return (
     <Link
       to={`product-details/${id}`}
-      className="flex flex-col w-[180px] mb-[10px] group"
+      className="flex flex-col sm:w-[180px] w-[80%] mx-auto mb-[10px] group"
     >
       <div
-        className={`w-full lg:h-[170px] h-[150px] rounded-[20px] flex ${bgColor}  items-center justify-center relative`}
+        className={`w-full lg:h-[170px] sm:h-[150px] h-[300px] rounded-[20px] flex ${bgColor}  items-center justify-center relative`}
       >
         <img
           src={`${process.env.BASE_URL}/assets/${image}`}
           alt={image}
-          className="-rotate-[20deg] group-hover:-rotate-[30deg] -translate-x-2 w-full -translate-y-2 z-10 ease-linear duration-300"
+          className="-rotate-[20deg] group-hover:-rotate-[30deg] -translate-x-2 w-full -translate-y-3 z-10 ease-linear duration-300"
           loading="lazy"
         />
         <div className="absolute h-[50px] w-[120px] rounded-full bg-black/20 -rotate-[20deg] group-hover:-rotate-[30deg] bottom-7 blur-[6px] ease-linear duration-300" />
       </div>
-      <div className="">
-        <div className="flex w-[170px] pt-[7px] text-sm px-[6px] justify-between">
-          <p className="flex-1 max-w-[110px] uppercase truncate text-white font-semibold text-[12px] font-sans">
+      <div className="w-full">
+        <div className="flex  pt-[7px] text-sm px-[6px] justify-between">
+          <p className="flex-1 max-w-[110px] uppercase truncate text-white font-semibold text-[14px] font-sans">
             {name.split("-").join(" ")}
           </p>
-          <p className=" text-white font-normal ml-1">${price}</p>
+          <p className=" text-white font-normal ml-1">$ {price}</p>
         </div>
         <div className="flex justify-between pt-[7px] px-[6px]">
           <RatingStars
@@ -65,7 +65,7 @@ const Product = ({ product }) => {
             color="text-emerald-300"
           />
           <p className="text-[14px] text-secondary-white/60">
-            {inventory} remain
+            {inventory} left
           </p>
         </div>
       </div>

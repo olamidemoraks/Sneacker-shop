@@ -12,8 +12,6 @@ const Footer = () => {
     <div className="relative z-[9] w-full h-[150px] flex flex-col bg-primary-black/95 pt-6">
       <motion.div
         variants={fadeIn("up", "tween", 0.3, 1)}
-        initial="hidden"
-        whileInView="show"
         className="flex justify-between px-[10rem] pt-5"
       >
         <h3 className="uppercase text-secondary-white italic font-semibold">

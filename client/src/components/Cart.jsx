@@ -23,17 +23,17 @@ const Cart = ({ open, handleClose }) => {
   return (
     <div
       className={`${
-        !open ? "translate-x-[1000vh]" : "translate-x-0"
-      } absolute top-0 right-0 left-0 bg-black/70 opacity-[10rem] w-[100%] h-[100vh] overflow-hidden transition-all duration-700  `}
+        !open ? "translate-x-[1000vw]" : "translate-x-0"
+      } absolute top-0 right-0 left-0  bg-black/70 opacity-[10rem] w-[100%] h-[100vh] overflow-hidden transition-all duration-700  `}
     >
       <div
-        className={`xl:w-[40%] lg:w-[50%] md:w-[60%] w-[100%] bg-black/60 h-full float-right overflow-y-auto overflow-x-hidden`}
+        className={`xl:w-[40%] lg:w-[50%] md:w-[60%] w-[100%] blur-bg bg-black/60 h-full float-right overflow-y-auto overflow-x-hidden`}
       >
         <div
           className="  absolute w-[30px] h-[30px] text-[1.6rem] p-4 cursor-pointer"
           onClick={() => handleClose(false)}
         >
-          <AiOutlineClose className=" bg-red-600 text-white rounded-sm" />
+          <AiOutlineClose className="  text-white rounded-sm" />
         </div>
 
         {isEmpty ? (
@@ -44,7 +44,7 @@ const Cart = ({ open, handleClose }) => {
         ) : (
           <div className=" flex flex-col justify-between h-full">
             <div>
-              <div className="flex flex-col mx-[20px] mt-[80px] gap-3">
+              <div className="flex flex-col sm:mx-[20px] mt-[80px] gap-3">
                 {items.map((item, index) => (
                   <CartItems
                     key={index.id}
@@ -55,43 +55,43 @@ const Cart = ({ open, handleClose }) => {
                 ))}
               </div>
             </div>
-            <div>
-              <div className="mx-[50px] flex flex-col mt-10 gap-5">
-                <div className="flex justify-between">
+            <div className=" ">
+              <div className="sm:px-[50px] px-[20px] flex flex-col mt-10 gap-3 ">
+                <div className="flex justify-between ">
                   <p className=" text-white text-lg">Sub Total:</p>
                   <p className=" text-white text-lg">
                     $ {cartTotal.toLocaleString("en-us")}
                   </p>
                 </div>
-                <div className="flex justify-between">
-                  <p className=" text-white text-lg">Shipping:</p>
-                  <p className=" text-white text-lg">$ 2.99</p>
+                <div className="flex justify-between text-neutral-300 ">
+                  <p className="text-lg">Shipping:</p>
+                  <p className="text-lg">$ 2.99</p>
                 </div>
               </div>
-              <div className="flex gradient-01 h-[150px] rounded-t-[20px] mt-8 items-center justify-between px-[50px]">
+              <div className="flex  bg-neutral-800 rounded-t-[20px]   mt-4 items-start justify-between sm:px-[50px] px-[20px] py-[25px]">
                 <div className="flex gap-2 flex-col">
                   <p className=" text-white text-base">
                     Total: ({totalItems} item)
                   </p>
-                  <p className=" text-white text-[30px] font-semibold  font-sans">
+                  <p className=" text-white text-lg font-semibold  font-sans">
                     $ {(cartTotal + Number(2.99)).toLocaleString("en-us")}
                   </p>
                 </div>
                 {token && !isExpired ? (
                   <Link
                     to="/home/checkout"
-                    className="p-4 rounded-lg bg-white text-xl"
+                    className="px-4 py-2 rounded-lg gradient-01 text-white text-xl"
                     onClick={() => handleClose(false)}
                   >
-                    Proceed to checkout
+                    Checkout
                   </Link>
                 ) : (
                   <Link
                     to="/"
-                    className="p-4 rounded-lg bg-white text-xl"
+                    className="px-4 py-2 rounded-lg bg-white text-xl"
                     onClick={() => handleClose(false)}
                   >
-                    Proceed to checkout
+                    Checkout
                   </Link>
                 )}
               </div>

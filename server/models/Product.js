@@ -43,7 +43,6 @@ const productSchema = new mongoose.Schema(
     inventory: {
       type: Number,
       default: 10,
-      required: true,
     },
     // userId:{
     //     required: true,

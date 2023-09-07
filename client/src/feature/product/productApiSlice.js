@@ -8,7 +8,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: () => ({
-        url: "/product",
+        url: "/product", 
         validateStatus: (response, result) => {
           return response.status === 200 && !result.isError;
         },

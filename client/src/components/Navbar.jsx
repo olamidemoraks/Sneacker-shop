@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BiSearch, BiMenuAltLeft } from "react-icons/bi";
@@ -21,11 +21,16 @@ const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearch, setIsSearch] = useState(false);
   const [search, setSearch] = useState("");
-
+  const [navBlur, setNavBlur] = useState(false);
   const { totalUniqueItems } = useCart();
 
   const { name, isAdmin, isExpired } = useAdmin();
 
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      window.pageYOffset > 100 ? setNavBlur(true) : setNavBlur(false);
+    });
+  }, []);
   function handleSearchSubmit() {
     dispatch(searchItem({ search }));
   }
@@ -47,7 +52,9 @@ const Navbar = () => {
       variants={navVariants}
       initial="hidden"
       whileInView="show"
-      className=" px-6 xl:px-[rem] sm:px-16 py-8 fixed top-0 left-0 right-0 bg-transparent z-10 "
+      className={`${
+        navBlur ? "blur-bg " : "bg-transparent"
+      } px-6 sm:px-16  fixed top-0 left-0 right-0 z-10 h-[60px] py-2`}
     >
       <div className="flex justify-between items-center w-full bg-transparent">
         <h2
@@ -85,7 +92,7 @@ const Navbar = () => {
           </div>
           <div className="flex justify-center items-center cursor-pointer relative">
             <FaShoppingBag
-              className="text-secondary-white hover:text-white text-[18px]"
+              className="text-white text-[18px]"
               onClick={() => {
                 setIsCartOpen((prev) => !prev);
                 setIsSearch(false);
@@ -160,7 +167,7 @@ const Navbar = () => {
           />
           <div className="flex justify-center items-center cursor-pointer relative">
             <FaShoppingBag
-              className="text-secondary-white hover:text-white text-[18px]"
+              className="text-white text-[18px]"
               onClick={() => {
                 setIsCartOpen((prev) => !prev);
                 setIsSearch(false);

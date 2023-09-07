@@ -36,7 +36,7 @@ const Products = () => {
         variants={fadeIn("left", "tween", 1, 1)}
         initial="hidden"
         whileInView="show"
-        className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-7 w-full"
+        className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-7 w-full"
       >
         {products.length > 0 ? (
           products.map((product, index) => (

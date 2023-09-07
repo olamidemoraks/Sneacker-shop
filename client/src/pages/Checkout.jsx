@@ -115,7 +115,7 @@ const Checkout = () => {
           }) => (
             <form
               onSubmit={handleSubmit}
-              className="border-[2px] border-gray-300 w-[600px]"
+              className="border-[2px] border-gray-300 md:w-[600px] w-[90%] "
             >
               <CheckoutForm
                 values={values}

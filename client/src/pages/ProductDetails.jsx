@@ -93,7 +93,7 @@ const ProductDetails = () => {
             <img
               src={`${process.env.BASE_URL}/assets/${product?.image}`}
               alt="images"
-              className="md:-rotate-[20deg] w-full md:group-hover:-rotate-[23deg] ease-linear duration-300 z-10"
+              className="-rotate-[20deg] w-full group-hover:-rotate-[23deg] ease-linear duration-300 z-10"
             />
             <div className="md:block hidden absolute lg:h-[100px] md:h-[100px] lg:w-[500px] md:w-[400px] rounded-full bg-black -rotate-[20deg] group-hover:-rotate-[23deg] lg:-bottom-20 -bottom-20 left-[15%] blur-[50px] ease-linear duration-300" />
             <div className="md:hidden absolute h-[100px] w-[300px] rounded-full bg-black bottom-0  blur-[60px] z-0" />
@@ -133,9 +133,6 @@ const ProductDetails = () => {
                   ))}
                 </select>
               </div>
-              {error ? (
-                <p className=" text-red-500 py-2">please select your size</p>
-              ) : null}
             </motion.label>
             <motion.button
               variants={fadeIn("right", "tween", 0.7, 1)}
@@ -158,72 +155,75 @@ const ProductDetails = () => {
           </p>
         </motion.div>
         {/* Mobile view */}
-        <div className="w-full md:hidden flex justify-between items-end">
-          <div>
-            <motion.p
-              variants={fadeIn("right", "tween", 0.5, 1)}
-              className="text-[30px] font-semibold mb-2 uppercase"
-            >
-              {product?.name}
-            </motion.p>
-            <motion.p
-              variants={fadeIn("right", "tween", 0.54, 1)}
-              className="text-[25px] font-semibold md:hidden text-orange-300"
-            >
-              $ {product?.price.toFixed(2)}
-            </motion.p>
-          </div>
-          <div>
-            <motion.div
-              variants={fadeIn("left", "tween", 0.5, 1)}
-              className="mt-4"
-            >
-              <RatingStars
-                rating={Number(product?.averageRating)}
-                w="w-4"
-                h="h-4"
-                color="text-emerald-300"
-              />
-            </motion.div>
-            <motion.div
-              variants={fadeIn("left", "tween", 0.54, 1)}
-              className="mt-2 leading-[2rem] text-[16px] text-secondary-white"
-            >
-              Available: {product?.inventory}
-            </motion.div>
-          </div>
-        </div>
-        <motion.div
-          variants={fadeIn("left", "tween", 0.5, 1)}
-          className="md:hidden flex gap-3 mx-auto"
-        >
-          {product?.size?.map((value, index) => (
-            <div
-              key={index}
-              onClick={() => setSize(value)}
-              className={`p-[5px] ${
-                value === size ? " bg-indigo-500" : "bg-primary-black/50"
-              }  cursor-pointer rounded-[7px] w-[30px] h-[30px] flex items-center justify-center hover:bg-gray-500`}
-            >
-              {value}
-            </div>
-          ))}
-        </motion.div>
-        <motion.button
-          variants={fadeIn("right", "tween", 0.6, 1)}
-          className="md:hidden text-indigo-500 font-bold uppercase text-[1.2rem] cursor-pointer tracking-wide mx-auto hover:bg-indigo-500 hover:text-indigo-100 px-3 rounded-[5px] w-full py-2 ease-linear duration-200"
-          type="button"
-          onClick={() => addToCart(product)}
-        >
-          Buy Now
-        </motion.button>
 
-        <motion.p
-          variants={fadeIn("up", "tween", 0.5, 1)}
-          className="md:hidden w-full text-[16px] text-center"
-        >
-          {product?.description}
-        </motion.p>
+        <div className="flex items-center flex-col translate-y-[4rem]">
+          <div className="w-full md:hidden flex sm:flex-row flex-col justify-between items-center">
+            <div className="text-center">
+              <motion.p
+                variants={fadeIn("right", "tween", 0.5, 1)}
+                className="text-xl font-semibold mb-2 uppercase"
+              >
+                {product?.name}
+              </motion.p>
+              <motion.p
+                variants={fadeIn("right", "tween", 0.54, 1)}
+                className="text-lg font-semibold md:hidden "
+              >
+                $ {product?.price.toFixed(2)}
+              </motion.p>
+            </div>
+            <div>
+              <motion.div
+                variants={fadeIn("left", "tween", 0.5, 1)}
+                className="mt-4"
+              >
+                <RatingStars
+                  rating={Number(product?.averageRating)}
+                  w="w-4"
+                  h="h-4"
+                  color="text-emerald-300"
+                />
+              </motion.div>
+              <motion.div
+                variants={fadeIn("left", "tween", 0.54, 1)}
+                className="mt-2 leading-[2rem] text-[16px] text-secondary-white"
+              >
+                Available: {product?.inventory}
+              </motion.div>
+            </div>
+          </div>
+          <motion.div
+            variants={fadeIn("left", "tween", 0.5, 1)}
+            className="md:hidden flex gap-3 mx-auto mt-3"
+          >
+            {product?.size?.map((value, index) => (
+              <div
+                key={index}
+                onClick={() => setSize(value)}
+                className={`p-[5px] ${
+                  value === size ? " bg-indigo-500" : "bg-primary-black/50"
+                }  cursor-pointer rounded-[7px] w-[30px] h-[30px] flex items-center justify-center hover:bg-gray-500`}
+              >
+                {value}
+              </div>
+            ))}
+          </motion.div>
+          <motion.button
+            variants={fadeIn("right", "tween", 0.6, 1)}
+            className="mt-3 md:hidden text-indigo-500 font-bold uppercase text-[1.2rem] cursor-pointer tracking-wide mx-auto hover:bg-indigo-500 hover:text-indigo-100 px-3 rounded-[5px] w-full py-2 ease-linear duration-200"
+            type="button"
+            onClick={() => addToCart(product)}
+          >
+            Buy Now
+          </motion.button>
+
+          <motion.p
+            variants={fadeIn("up", "tween", 0.5, 1)}
+            className="mt-3 md:hidden w-full text-[16px] text-center"
+          >
+            {product?.description}
+          </motion.p>
+        </div>
       </div>
     </motion.div>
   );
