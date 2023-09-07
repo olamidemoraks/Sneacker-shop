@@ -125,8 +125,19 @@ const Slider = () => {
         >
           <div className="flex flex-col min-w-[18rem] max-w-[25rem] gap-3 max-sm:text-center">
             <h2 className="text-white text-2xl font-bold">$ {price}</h2>
-            <p className="text-secondary-white font-light tracking-wide text-[14px] leading-7">
-              {description}
+            <p className="text-secondary-white font-light tracking-wide text-[14px] leading-7 truncate">
+              {description} Lorem ipsum dolor, sit amet consectetur adipisicing
+              elit. Ab odit nesciunt porro totam alias optio quis consequuntur
+              tempore, possimus numquam hic enim voluptate libero vitae?
+              Deserunt doloribus libero ut cum incidunt impedit obcaecati
+              reiciendis minus distinctio sint? Ducimus vel architecto rerum
+              pariatur itaque ex sed, non quas nulla laborum obcaecati voluptate
+              veniam voluptatibus nihil? Et ut cumque, saepe tempore cupiditate
+              esse accusamus soluta deleniti at laboriosam facere est placeat
+              vitae asperiores beatae. Voluptas veritatis sequi dicta architecto
+              laborum porro eaque laudantium, in, ipsum saepe aliquam voluptates
+              dolore inventore reprehenderit alias itaque assumenda quod,
+              nesciunt qui maxime dolor corporis. Quo, similique.
             </p>
           </div>
           <Link to={`product-details/${id}`}>

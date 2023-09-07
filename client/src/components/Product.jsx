@@ -45,7 +45,7 @@ const Product = ({ product }) => {
         <img
           src={`${process.env.BASE_URL}/assets/${image}`}
           alt={image}
-          className="-rotate-[20deg] group-hover:-rotate-[30deg] -translate-x-2 w-full -translate-y-3 z-10 ease-linear duration-300"
+          className="-rotate-[20deg] group-hover:-rotate-[30deg] -translate-x-2 w-full sm:-translate-y-3 -translate-y-10 z-10 ease-linear duration-300"
           loading="lazy"
         />
         <div className="absolute h-[50px] w-[120px] rounded-full bg-black/20 -rotate-[20deg] group-hover:-rotate-[30deg] bottom-7 blur-[6px] ease-linear duration-300" />
